@@ -96,9 +96,11 @@ const Description = () => {
         {MockDesription.description}
       </Text>
 
-      <TouchableOpacity className="w-full h-[50px] items-center justify-center bg-violet rounded-lg">
-        <Text className="text-white font-outfit text-base">ENROLL</Text>
-      </TouchableOpacity>
+      {!MockDesription.is_purchased && (
+        <TouchableOpacity className="w-full h-[50px] items-center justify-center bg-violet rounded-lg">
+          <Text className="text-white font-outfit text-base">ENROLL</Text>
+        </TouchableOpacity>
+      )}
     </View>
   )
 }
