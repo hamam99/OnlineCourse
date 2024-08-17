@@ -1,6 +1,7 @@
 import { ScrollView, Text, View } from 'react-native'
 import { ProfileBar, SearchBar } from '../../components/features/Home'
-import Courses, { ICourse } from '../../components/shared/Courses'
+import Courses from '../../components/shared/Courses'
+import { ICourse } from '../../types/ICourse'
 
 const MockInprogress: ICourse[] = [
   {
