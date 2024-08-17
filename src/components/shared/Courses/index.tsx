@@ -10,9 +10,19 @@ type CoursesProps = {
   title?: string
   courses?: ICourse[]
   titleClassNames?: string
+  isVertical?: boolean
+  containerClassName?: string
+  listClassName?: string
 }
 const Courses = (props: CoursesProps) => {
-  const { title, courses = [], titleClassNames } = props
+  const {
+    title,
+    courses = [],
+    titleClassNames,
+    isVertical = false,
+    containerClassName,
+    listClassName,
+  } = props
 
   const navigation = useNavigation()
 
@@ -69,8 +79,9 @@ const Courses = (props: CoursesProps) => {
       </TouchableOpacity>
     )
   }
+
   return (
-    <View className="gap-2 w-fit h-fit">
+    <View className={classNames('gap-2 w-fit h-fit', containerClassName)}>
       <Text
         className={classNames(
           'font-outfit text-2xl text-black font-bold',
@@ -82,11 +93,13 @@ const Courses = (props: CoursesProps) => {
       <FlatList
         data={courses}
         renderItem={renderItem}
-        horizontal
+        horizontal={!isVertical}
         contentContainerStyle={{
-          columnGap: 20,
+          gap: 16,
         }}
         showsHorizontalScrollIndicator={false}
+        showsVerticalScrollIndicator={false}
+        className={classNames(listClassName)}
       />
     </View>
   )
