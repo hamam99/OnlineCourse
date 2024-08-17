@@ -4,6 +4,7 @@ import Login from '../pages/Login'
 import Home from '../pages/Home'
 import CourseDetail from '../pages/CourseDetail'
 import CourseVideo from '../pages/CourseVideo'
+import Profile from '../pages/Profile'
 
 const Stack = createNativeStackNavigator()
 
@@ -19,6 +20,7 @@ const RootNavigation = () => {
       <Stack.Screen name={RouteName.HOME} component={Home} />
       <Stack.Screen name={RouteName.COURSE_DETAIL} component={CourseDetail} />
       <Stack.Screen name={RouteName.COURSE_VIDEO} component={CourseVideo} />
+      <Stack.Screen name={RouteName.PROFILE} component={Profile} />
     </Stack.Navigator>
   )
 }

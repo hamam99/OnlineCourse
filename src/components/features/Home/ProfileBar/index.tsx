@@ -1,7 +1,10 @@
-import { Text, View } from 'react-native'
+import { Text, TouchableOpacity, View } from 'react-native'
 import React from 'react'
 import FastImage from 'react-native-fast-image'
 import { Points } from '../../../shared'
+import useNavigation from '../../../../navigation/useNavigation'
+import { IconSettings } from 'tabler-icons-react-native'
+import { RouteName } from '../../../../navigation/RouteName'
 
 const ProfileBar = () => {
   const MockUser = {
@@ -9,6 +12,8 @@ const ProfileBar = () => {
     name: 'Hamam',
     point: 3500,
   }
+
+  const navigation = useNavigation()
   return (
     <View className="flex-row py-3 bg-violet items-center justify-between">
       <View className="flex-row items-center gap-2">
@@ -29,7 +34,13 @@ const ProfileBar = () => {
           </Text>
         </View>
       </View>
-      <Points poin={MockUser.point} />
+      <TouchableOpacity
+        onPress={() => {
+          navigation.navigate(RouteName.PROFILE)
+        }}
+      >
+        <IconSettings size={28} color="white" />
+      </TouchableOpacity>
     </View>
   )
 }
