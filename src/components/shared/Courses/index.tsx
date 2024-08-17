@@ -2,17 +2,9 @@ import classNames from 'classnames'
 import { FlatList, Text, TouchableOpacity, View } from 'react-native'
 import FastImage from 'react-native-fast-image'
 import { IconBook, IconClock, IconHourglass } from 'tabler-icons-react-native'
-
-export type ICourse = {
-  id?: number
-  title?: string
-  total_chapter?: number
-  durations?: string
-  type?: 'Free' | 'Premium'
-  progress?: number
-  thumb?: string
-  is_purchased?: boolean
-}
+import useNavigation from '../../../navigation/useNavigation'
+import { RouteName } from '../../../navigation/RouteName'
+import { ICourse } from '../../../types/ICourse'
 
 type CoursesProps = {
   title?: string
@@ -22,14 +14,18 @@ type CoursesProps = {
 const Courses = (props: CoursesProps) => {
   const { title, courses = [], titleClassNames } = props
 
+  const navigation = useNavigation()
+
   const renderItem = ({ item }: { item: ICourse }) => {
     const { progress = 0, total_chapter = 0 } = item
-    console.log(`progress`, (progress / total_chapter) * 100)
     return (
       <TouchableOpacity
         className="bg-white rounded-2xl p-3 border-2 border-[#00000029] w-fit h-fit "
         style={{
           gap: 4,
+        }}
+        onPress={() => {
+          navigation.navigate(RouteName.COURSE_DETAIL)
         }}
       >
         <FastImage
