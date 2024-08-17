@@ -6,4 +6,5 @@ export type RootStackParamList = {
   [RouteName.COURSE_DETAIL]: undefined
   [RouteName.COURSE_VIDEO]: undefined
   [RouteName.PROFILE]: undefined
+  [RouteName.MY_COURSE]: undefined
 }

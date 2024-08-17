@@ -4,4 +4,5 @@ export enum RouteName {
   COURSE_DETAIL = 'CourseDetail',
   COURSE_VIDEO = 'CourseVideo',
   PROFILE = 'Profile',
+  MY_COURSE = 'MyCourse',
 }

@@ -3,8 +3,11 @@ import { IconBook, IconLogout2, IconUserEdit } from 'tabler-icons-react-native'
 import Colors from '../../../../utils/Colors'
 import ShowToast from '../../../../utils/ShowToast'
 import Toast from 'react-native-toast-message'
+import useNavigation from '../../../../navigation/useNavigation'
+import { RouteName } from '../../../../navigation/RouteName'
 
 const Menu = () => {
+  const navigation = useNavigation()
   const ListMenu = [
     {
       label: 'Update Profile',
@@ -17,7 +20,9 @@ const Menu = () => {
     },
     {
       label: 'My Course',
-      onPress: () => {},
+      onPress: () => {
+        navigation.navigate(RouteName.MY_COURSE)
+      },
       icon: <IconBook size={32} color={Colors.violet} />,
     },
     {
