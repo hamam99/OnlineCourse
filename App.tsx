@@ -11,6 +11,7 @@ import { StyleSheet, Text, useColorScheme, View } from 'react-native'
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context'
 import RootNavigation from './src/navigation/RootNavigation'
 import { NavigationContainer } from '@react-navigation/native'
+import Toast from 'react-native-toast-message'
 
 function App(): React.JSX.Element {
   return (
@@ -21,6 +22,8 @@ function App(): React.JSX.Element {
         }}
         edges={['top', 'left', 'right', 'bottom']}
       >
+        <Toast />
+
         <NavigationContainer>
           <RootNavigation />
         </NavigationContainer>
