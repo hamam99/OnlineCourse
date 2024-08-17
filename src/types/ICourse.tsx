@@ -7,6 +7,7 @@ export type ICourse = {
   progress?: number
   thumb?: string
   is_purchased?: boolean
+  price?: number
 }
 export type ICourseDetail = ICourse & {
   description?: string

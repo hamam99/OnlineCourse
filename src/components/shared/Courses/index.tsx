@@ -18,6 +18,7 @@ const Courses = (props: CoursesProps) => {
 
   const renderItem = ({ item }: { item: ICourse }) => {
     const { progress = 0, total_chapter = 0 } = item
+
     return (
       <TouchableOpacity
         className="bg-white rounded-2xl p-3 border-2 border-[#00000029] w-fit h-fit "
@@ -62,7 +63,7 @@ const Courses = (props: CoursesProps) => {
           </View>
         ) : (
           <Text className="font-outfit text-base text-violet">
-            {item?.type}
+            {Number(item?.price) > 0 ? '$' + item?.price : 'Free'}
           </Text>
         )}
       </TouchableOpacity>

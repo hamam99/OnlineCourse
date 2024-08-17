@@ -13,6 +13,7 @@ const MockInprogress: ICourse[] = [
     type: 'Free',
     progress: 8,
     is_purchased: true,
+    price: 0,
   },
 ]
 
@@ -39,14 +40,16 @@ const MockInternetMarketing: ICourse[] = [
     total_chapter: 15,
     thumb: 'https://i.ytimg.com/vi/2lVDktWK-pc/maxresdefault.jpg',
     title: 'Introduction to C++',
-    type: 'Free',
+    type: 'Premium',
+    price: 1.99,
   },
   {
     durations: '2h:30 min',
     total_chapter: 15,
     thumb: 'https://i.ytimg.com/vi/2lVDktWK-pc/maxresdefault.jpg',
     title: 'Introduction to B++',
-    type: 'Free',
+    type: 'Premium',
+    price: 1.99,
   },
 ]
 
