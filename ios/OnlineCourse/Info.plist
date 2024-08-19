@@ -24,6 +24,14 @@
 	<string>$(CURRENT_PROJECT_VERSION)</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>CFBundleTypeRole</key>
+	<string>None</string>
+	<key>CFBundleURLName</key>
+	<string>auth0</string>
+	<key>CFBundleURLSchemes</key>
+	<array>
+		<string>$(PRODUCT_BUNDLE_IDENTIFIER).auth0</string>
+	</array>
 	<key>NSAppTransportSecurity</key>
 	<dict>
 		<key>NSAllowsArbitraryLoads</key>
