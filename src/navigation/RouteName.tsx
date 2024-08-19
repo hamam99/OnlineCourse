@@ -1,4 +1,5 @@
 export enum RouteName {
+  SPLASH = 'Splash',
   LOGIN = 'Login',
   HOME = 'Home',
   COURSE_DETAIL = 'CourseDetail',
