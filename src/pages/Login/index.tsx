@@ -30,18 +30,11 @@ const Login = () => {
       </View>
 
       <TouchableOpacity
-        className=" flex-row px-0-4 w-fit rounded-3xl bg-white px-6 py-2 gap-x-2 items-center"
+        className=" flex-row w-[250px] rounded-3xl bg-white px-6 py-2 items-center justify-center"
         onPress={onLogin}
       >
-        <Image
-          source={require('../../assets/icons/google.png')}
-          style={{
-            width: 24,
-            height: 24,
-          }}
-        />
-        <Text className="font-outfit text-xl text-black">
-          Login With Google
+        <Text className="font-outfit text-xl text-black text-center">
+          Login
         </Text>
       </TouchableOpacity>
     </View>
