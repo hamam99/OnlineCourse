@@ -1,10 +1,4 @@
-import {
-  FlatList,
-  Text,
-  ToastAndroid,
-  TouchableOpacity,
-  View,
-} from 'react-native'
+import { FlatList, Text, TouchableOpacity, View } from 'react-native'
 import { IconBook, IconLogout2, IconUserEdit } from 'tabler-icons-react-native'
 import Colors from '../../../../utils/Colors'
 import ShowToast from '../../../../utils/ShowToast'
@@ -24,7 +18,6 @@ const Menu = () => {
         ShowToast({
           message: 'In maintenance',
         })
-        ToastAndroid.show('In maintenance', ToastAndroid.SHORT)
       },
       icon: <IconUserEdit size={32} color={Colors.violet} />,
     },

@@ -25,10 +25,10 @@ function App(): React.JSX.Element {
           }}
           edges={['top', 'left', 'right', 'bottom']}
         >
-          <Toast />
           <NavigationContainer>
             <RootNavigation />
           </NavigationContainer>
+          <Toast />
         </SafeAreaView>
       </Auth0Provider>
     </SafeAreaProvider>
