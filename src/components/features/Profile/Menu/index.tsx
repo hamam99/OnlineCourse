@@ -1,13 +1,22 @@
-import { FlatList, Text, TouchableOpacity, View } from 'react-native'
+import {
+  FlatList,
+  Text,
+  ToastAndroid,
+  TouchableOpacity,
+  View,
+} from 'react-native'
 import { IconBook, IconLogout2, IconUserEdit } from 'tabler-icons-react-native'
 import Colors from '../../../../utils/Colors'
 import ShowToast from '../../../../utils/ShowToast'
-import Toast from 'react-native-toast-message'
 import useNavigation from '../../../../navigation/useNavigation'
 import { RouteName } from '../../../../navigation/RouteName'
+import { useAuth0 } from 'react-native-auth0'
 
 const Menu = () => {
   const navigation = useNavigation()
+
+  const { clearSession } = useAuth0()
+
   const ListMenu = [
     {
       label: 'Update Profile',
@@ -15,6 +24,7 @@ const Menu = () => {
         ShowToast({
           message: 'In maintenance',
         })
+        ToastAndroid.show('In maintenance', ToastAndroid.SHORT)
       },
       icon: <IconUserEdit size={32} color={Colors.violet} />,
     },
@@ -27,7 +37,9 @@ const Menu = () => {
     },
     {
       label: 'Logout',
-      onPress: () => {},
+      onPress: () => {
+        clearSession()
+      },
       icon: <IconLogout2 size={32} color={Colors.violet} />,
     },
   ]
