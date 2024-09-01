@@ -1,14 +1,21 @@
-export type ICourse = {
-  id?: number
-  title?: string
-  total_chapter?: number
-  durations?: string
-  type?: 'Free' | 'Premium'
-  progress?: number
-  thumb?: string
-  is_purchased?: boolean
-  price?: number
+export type ICoursesGroup = {
+  [key: string]: ICourse[]
 }
+
+export type ICourse = {
+  category: string
+  chapters: ICourseChapter[]
+  creator: string
+  description: string
+  duration: string
+  id: string
+  level: string
+  price: number
+  title: string
+  is_purchased?: boolean
+  thumb?: IThumb
+}
+
 export type ICourseDetail = ICourse & {
   description?: string
   level?: 'Basic' | 'Intermediate' | 'Advance'
@@ -17,9 +24,13 @@ export type ICourseDetail = ICourse & {
 }
 
 export type ICourseChapter = {
-  id?: number
-  title?: string
-  url?: string
+  id: string
   isLocked?: boolean
+  title: string
+  url?: string
   isWatched?: boolean
+}
+
+export type IThumb = {
+  url: string
 }
