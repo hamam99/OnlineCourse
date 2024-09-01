@@ -5,6 +5,7 @@ import { IconBook, IconClock, IconHourglass } from 'tabler-icons-react-native'
 import useNavigation from '../../../navigation/useNavigation'
 import { RouteName } from '../../../navigation/RouteName'
 import { ICourse } from '../../../types/ICourse'
+import { convertToTitleCase } from '../../../utils/convertToTitleCase'
 
 type CoursesProps = {
   title?: string
@@ -26,8 +27,12 @@ const Courses = (props: CoursesProps) => {
 
   const navigation = useNavigation()
 
+  const categoryCourses = convertToTitleCase(title)
+
   const renderItem = ({ item }: { item: ICourse }) => {
     const { progress = 0, total_chapter = 0 } = item
+
+    console.log(`item?.thumb?.url`, item?.thumb?.url)
 
     return (
       <TouchableOpacity
@@ -41,7 +46,7 @@ const Courses = (props: CoursesProps) => {
       >
         <FastImage
           source={{
-            uri: item?.thumb,
+            uri: item?.thumb?.url,
           }}
           className="w-[246px] h-[128px] rounded-2xl"
         />
@@ -52,13 +57,13 @@ const Courses = (props: CoursesProps) => {
           <View className="flex-row items-center gap-1">
             <IconBook size={18} />
             <Text className="font-outfit text-xs text-black">
-              {item?.total_chapter} Chapters
+              {item?.chapters?.length} Chapters
             </Text>
           </View>
           <View className="flex-row items-center gap-1">
             <IconClock size={18} />
             <Text className="font-outfit text-xs text-black">
-              {item?.durations}
+              {item?.duration}
             </Text>
           </View>
         </View>
@@ -88,7 +93,7 @@ const Courses = (props: CoursesProps) => {
           titleClassNames,
         )}
       >
-        {title}
+        {categoryCourses}
       </Text>
       <FlatList
         data={courses}
