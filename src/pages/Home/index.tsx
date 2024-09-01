@@ -1,7 +1,9 @@
-import { ScrollView, Text, View } from 'react-native'
+import { FlatList, ScrollView, Text, View } from 'react-native'
 import { ProfileBar, SearchBar } from '../../components/features/Home'
 import Courses from '../../components/shared/Courses'
 import { ICourse } from '../../types/ICourse'
+import { useGetCourseAll } from '../../hooks/apollo'
+import Loading from '../../components/shared/Loading'
 
 const MockInprogress: ICourse[] = [
   {
@@ -17,43 +19,9 @@ const MockInprogress: ICourse[] = [
   },
 ]
 
-const MockProgramming: ICourse[] = [
-  {
-    durations: '2h:30 min',
-    total_chapter: 15,
-    thumb: 'https://i.ytimg.com/vi/2lVDktWK-pc/maxresdefault.jpg',
-    title: 'Introduction to C++',
-    type: 'Free',
-  },
-  {
-    durations: '2h:30 min',
-    total_chapter: 15,
-    thumb: 'https://i.ytimg.com/vi/2lVDktWK-pc/maxresdefault.jpg',
-    title: 'Introduction to B++',
-    type: 'Free',
-  },
-]
-
-const MockInternetMarketing: ICourse[] = [
-  {
-    durations: '2h:30 min',
-    total_chapter: 15,
-    thumb: 'https://i.ytimg.com/vi/2lVDktWK-pc/maxresdefault.jpg',
-    title: 'Introduction to C++',
-    type: 'Premium',
-    price: 1.99,
-  },
-  {
-    durations: '2h:30 min',
-    total_chapter: 15,
-    thumb: 'https://i.ytimg.com/vi/2lVDktWK-pc/maxresdefault.jpg',
-    title: 'Introduction to B++',
-    type: 'Premium',
-    price: 1.99,
-  },
-]
-
 const Home = () => {
+  const { courses, loading } = useGetCourseAll()
+
   return (
     <ScrollView>
       <View className="flex-1 bg-white pb-8">
@@ -69,16 +37,18 @@ const Home = () => {
               titleClassNames="text-white"
             />
           </View>
-          <View className="mt-3">
-            <Courses title="Internet Marketing" courses={MockProgramming} />
-          </View>
-          <View className="mt-3">
-            <Courses
-              title="Internet Marketing"
-              courses={MockInternetMarketing}
-            />
-          </View>
+          {/* ALL COURSE */}
+          {courses &&
+            Object.entries(courses).map(([key, value]) => {
+              console.log(`looping`, key, value)
+              return (
+                <View className="mt-3 " key={key}>
+                  <Courses title={key} courses={value} />
+                </View>
+              )
+            })}
         </View>
+        <Loading isLoading={loading} />
       </View>
     </ScrollView>
   )
