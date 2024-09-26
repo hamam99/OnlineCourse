@@ -23,6 +23,7 @@ const Home = () => {
                 title="In Progress"
                 courses={coursesUser}
                 titleClassNames="text-white"
+                isPurchased={true}
               />
             </View>
           )}
