@@ -43,12 +43,6 @@ const useGetCourseAll = () => {
     return result
   }, [data]) as ICoursesGroup
 
-  console.log(`useGetCourseAll`, {
-    error,
-    data,
-    courses,
-  })
-
   return {
     loading,
     error,
