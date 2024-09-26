@@ -5,50 +5,21 @@ import { useCallback } from 'react'
 import { ICourseChapter } from '../../types/ICourse'
 import ChapterList from '../../components/shared/ChapterList'
 import classNames from 'classnames'
-
-const MockChapters: ICourseChapter[] = [
-  {
-    id: 1,
-    title: 'Introduction',
-    url: 'https://www.youtube.com/watch?v=MNeX4EGtR5Y',
-    isLocked: false,
-    isWatched: true,
-  },
-  {
-    id: 2,
-    title: 'Getting Started',
-    url: 'https://www.youtube.com/watch?v=sNMtjs_wQiE',
-    isLocked: false,
-    isWatched: false,
-  },
-  {
-    id: 3,
-    title: 'What is C++',
-    url: 'https://www.youtube.com/watch?v=sNMtjs_wQiE',
-    isLocked: true,
-    isWatched: false,
-  },
-  {
-    id: 4,
-    title: 'Getting Started',
-    url: 'https://www.youtube.com/watch?v=sNMtjs_wQiE',
-    isLocked: false,
-    isWatched: false,
-  },
-  {
-    id: 5,
-    title: 'What is C++',
-    url: 'https://www.youtube.com/watch?v=sNMtjs_wQiE',
-    isLocked: true,
-    isWatched: false,
-  },
-]
+import useSelectedCourse from '../../store/useSelectedCourse'
+import getYoutubeId from '../../utils/getYoutubeId'
 
 const CourseVideo = () => {
-  const { width, height } = useWindowDimensions()
+  const { height } = useWindowDimensions()
   const onStateChange = useCallback((state: PLAYER_STATES) => {
     console.log(`state: ${state}`)
   }, [])
+
+  const {
+    isPurchased,
+    selectedCourse: course,
+    setSelectedChapter,
+    selectedChapter,
+  } = useSelectedCourse(state => state)
 
   return (
     <View
@@ -60,7 +31,7 @@ const CourseVideo = () => {
       <Header />
       <YoutubePlayer
         height={height / 3.5}
-        videoId={'iee2TATGMyI'}
+        videoId={getYoutubeId(selectedChapter?.url || '')}
         onChangeState={onStateChange}
         allowWebViewZoom={false}
         contentScale={1}
@@ -70,14 +41,17 @@ const CourseVideo = () => {
       <Text
         className={classNames('font-outfit text-xl font-bold text-violet pb-1')}
       >
-        {'01. Introduction'}
+        {selectedChapter?.title}
       </Text>
 
       <ChapterList
-        chapters={MockChapters}
-        onChapterClick={item => {}}
+        chapters={course?.chapters || []}
+        onChapterClick={item => {
+          setSelectedChapter(item)
+        }}
         scrollEnabled
         title="Chapters"
+        isPurchased={isPurchased}
       />
     </View>
   )
