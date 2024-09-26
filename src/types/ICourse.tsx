@@ -2,6 +2,13 @@ export type ICoursesGroup = {
   [key: string]: ICourse[]
 }
 
+export type IUserCourse = {
+  courseId: string
+  id: string
+  userId: string
+  courses: ICourse[]
+}
+
 export type ICourse = {
   category: string
   chapters: ICourseChapter[]
