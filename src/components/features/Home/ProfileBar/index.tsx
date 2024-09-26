@@ -1,7 +1,6 @@
 import { Text, TouchableOpacity, View } from 'react-native'
 import React from 'react'
 import FastImage from 'react-native-fast-image'
-import { Points } from '../../../shared'
 import useNavigation from '../../../../navigation/useNavigation'
 import { IconSettings } from 'tabler-icons-react-native'
 import { RouteName } from '../../../../navigation/RouteName'
