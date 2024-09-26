@@ -6,6 +6,7 @@ import useNavigation from '../../../navigation/useNavigation'
 import { RouteName } from '../../../navigation/RouteName'
 import { ICourse } from '../../../types/ICourse'
 import { convertToTitleCase } from '../../../utils/convertToTitleCase'
+import useSelectedCourse from '../../../store/useSelectedCourse'
 
 type CoursesProps = {
   title?: string
@@ -14,20 +15,25 @@ type CoursesProps = {
   isVertical?: boolean
   containerClassName?: string
   listClassName?: string
+  isPurchased?: boolean
 }
 const Courses = (props: CoursesProps) => {
   const {
-    title,
+    title = '',
     courses = [],
     titleClassNames,
     isVertical = false,
     containerClassName,
     listClassName,
+    isPurchased = false,
   } = props
 
   const navigation = useNavigation()
 
   const categoryCourses = convertToTitleCase(title)
+
+  const setSelectedCourse = useSelectedCourse(state => state.setSelectedCourse)
+  const setIsPurchased = useSelectedCourse(state => state.setIsPurchased)
 
   const renderItem = ({ item }: { item: ICourse }) => {
     const { progress = 0, total_chapter = 0 } = item
@@ -40,6 +46,8 @@ const Courses = (props: CoursesProps) => {
         }}
         onPress={() => {
           navigation.navigate(RouteName.COURSE_DETAIL)
+          setSelectedCourse(item)
+          setIsPurchased(isPurchased)
         }}
       >
         <FastImage
@@ -47,6 +55,9 @@ const Courses = (props: CoursesProps) => {
             uri: item?.thumb?.url,
           }}
           className="w-[246px] h-[128px] rounded-2xl"
+          style={{
+            alignSelf: 'center',
+          }}
         />
         <Text className="font-outfit text-xl text-black font-medium">
           {item?.title}
@@ -65,15 +76,17 @@ const Courses = (props: CoursesProps) => {
             </Text>
           </View>
         </View>
-        {item?.is_purchased ? (
-          <View className="w-fit bg-gray-300 h-2 rounded-full">
-            <View
-              className={classNames('bg-violet h-full rounded-full')}
-              style={{
-                width: `${(progress / total_chapter) * 100}%`,
-              }}
-            />
-          </View>
+        {isPurchased ? (
+          <>
+            {/* <View className="w-fit bg-gray-300 h-2 rounded-full">
+              <View
+                className={classNames('bg-violet h-full rounded-full')}
+                style={{
+                  width: `${(progress / total_chapter) * 100}%`,
+                }}
+              />
+            </View> */}
+          </>
         ) : (
           <Text className="font-outfit text-base text-violet">
             {Number(item?.price) > 0 ? '$' + item?.price : 'Free'}
