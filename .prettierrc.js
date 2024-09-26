@@ -10,4 +10,5 @@ module.exports = {
   trailingComma: 'all',
   endOfLine: 'auto',
   semi: false,
-};
+  organizeImportsSkipDestructiveCodeActions: true,
+}
