@@ -1,4 +1,4 @@
-export function convertToTitleCase(text: string) {
+export function convertToTitleCase(text: string = '') {
   if (!text.includes('_')) {
     return text // Return the original string if it doesn't contain an underscore
   }
