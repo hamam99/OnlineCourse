@@ -39,11 +39,14 @@ const QUERY = gql`
 const useGetCourseUser = () => {
   const { user } = useAuth0()
 
-  const [getCoursesApollo, { data, error, loading }] = useLazyQuery(QUERY, {
-    variables: {
-      userId: user?.sub,
+  const [getCoursesApollo, { data, error, loading, refetch }] = useLazyQuery(
+    QUERY,
+    {
+      variables: {
+        userId: user?.sub,
+      },
     },
-  })
+  )
 
   const courses =
     (useMemo(() => {

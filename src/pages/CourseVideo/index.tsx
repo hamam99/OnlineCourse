@@ -15,7 +15,6 @@ const CourseVideo = () => {
   }, [])
 
   const {
-    isPurchased,
     selectedCourse: course,
     setSelectedChapter,
     selectedChapter,
@@ -51,7 +50,8 @@ const CourseVideo = () => {
         }}
         scrollEnabled
         title="Chapters"
-        isPurchased={isPurchased}
+        isPurchased={true}
+        playingChapter={selectedChapter}
       />
     </View>
   )

@@ -14,6 +14,7 @@ type ChapterListProps = {
   scrollEnabled?: boolean
   title?: string
   isPurchased?: boolean
+  playingChapter?: ICourseChapter | null
 }
 
 const ChapterList = ({
@@ -22,6 +23,7 @@ const ChapterList = ({
   scrollEnabled = true,
   title,
   isPurchased = false,
+  playingChapter = null,
 }: ChapterListProps) => {
   const renderItem = ({
     item,
@@ -31,24 +33,24 @@ const ChapterList = ({
     index: number
   }) => {
     const isLocked = isPurchased ? false : item?.isLocked
-
+    const isPlayingChapter = playingChapter?.id === item?.id
     return (
       <TouchableOpacity
         className={classNames(
           'rounded-2xl px-4 py-2  h-[70px] flex-row items-center space-x-2 border-2 border-violet bg-violet_3 ',
-          item?.isWatched && 'border-green  bg-green_2',
+          isPlayingChapter && 'border-green  bg-green_2',
           isLocked && 'border-gray_1  ',
         )}
         disabled={isLocked}
         onPress={() => onChapterClick(item)}
       >
-        {item?.isWatched ? (
+        {isPlayingChapter ? (
           <IconCircleCheck size={30} color={Colors.green} />
         ) : (
           <Text
             className={classNames(
               'font-outfit text-3xl  w-[45px] text-violet',
-              item?.isWatched && 'text-green',
+              isPlayingChapter && 'text-green',
               isLocked && 'text-gray_1',
             )}
           >
@@ -60,7 +62,7 @@ const ChapterList = ({
         <Text
           className={classNames(
             'font-outfit text-xl flex-1 text-violet',
-            item?.isWatched && 'text-green ',
+            isPlayingChapter && 'text-green ',
             isLocked && 'text-gray_1',
           )}
         >
@@ -75,7 +77,7 @@ const ChapterList = ({
         ) : (
           <IconCircleCaretRight
             size={30}
-            color={item?.isWatched ? Colors.green : Colors.violet}
+            color={isPlayingChapter ? Colors.green : Colors.violet}
           />
         )}
       </TouchableOpacity>

@@ -9,9 +9,11 @@ const Chapters = () => {
     isPurchased,
     selectedCourse: course,
     setSelectedChapter,
+    selectedChapter,
   } = useSelectedCourse(state => state)
 
   const { navigate } = useNavigation()
+
   return (
     <View className="bg-white p-4 rounded-2xl">
       <ChapterList
@@ -22,7 +24,7 @@ const Chapters = () => {
           navigate(RouteName.COURSE_VIDEO)
         }}
         scrollEnabled={false}
-        isPurchased={isPurchased}
+        isPurchased={true}
       />
     </View>
   )

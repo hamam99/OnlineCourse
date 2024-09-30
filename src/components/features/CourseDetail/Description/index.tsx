@@ -10,12 +10,19 @@ import {
 import { useRoute } from '@react-navigation/native'
 import { convertToTitleCase } from '../../../../utils/convertToTitleCase'
 import useSelectedCourse from '../../../../store/useSelectedCourse'
+import useMutationEnrollCourse from '../../../../hooks/apollo/useMutationEnrollCourse'
+import Loading from '../../../shared/Loading'
 
 const Description = () => {
   const { isPurchased, selectedCourse: course } = useSelectedCourse(
     state => state,
   )
 
+  const { enrollCourse, loading, data, error } = useMutationEnrollCourse()
+
+  const onPressEnroll = () => {
+    enrollCourse(course?.id!!)
+  }
   return (
     <View
       className="w-full bg-white rounded-2xl px-3 py-4"
@@ -68,11 +75,15 @@ const Description = () => {
         {course?.description}
       </Text>
 
-      {!isPurchased && (
-        <TouchableOpacity className="w-full h-[50px] items-center justify-center bg-violet rounded-lg">
+      {/* {!isPurchased && (
+        <TouchableOpacity
+          className="w-full h-[50px] items-center justify-center bg-violet rounded-lg"
+          onPress={onPressEnroll}
+        >
           <Text className="text-white font-outfit text-base">ENROLL</Text>
         </TouchableOpacity>
-      )}
+      )} */}
+      <Loading isLoading={loading} />
     </View>
   )
 }
